@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AAFIYA Coaching Centre - Fee Management</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Crimson+Pro:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--navy:#0a1628;--navy2:#112240;--gold:#c9a84c;--gold2:#e8c97a;--green:#1a7a4a;--red:#c0392b;--blue:#1565c0;--purple:#6a1b9a;--orange:#e65100;--gray:#6b7280;--light:#f3f4f6;--bd:#d1d5db;--shadow:0 4px 24px rgba(10,22,40,.13)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}body{margin:0;background:var(--light);color:var(--navy);font-family:'Crimson Pro',Georgia,serif;font-size:16px;min-height:100vh}
+.pb{background:rgba(0,0,0,.25);background-color:#060e1b;border-bottom:1px solid rgba(201,168,76,.3);color:var(--gold2);text-align:center;padding:6px 12px;font-size:12px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;align-items:center;font-family:'JetBrains Mono',monospace}
+.pb b{font-family:'Playfair Display',Georgia,serif;font-size:14px;color:var(--gold);user-select:none;-webkit-user-select:none;cursor:pointer;letter-spacing:.5px}.pb i{opacity:.4;font-style:normal}
+header{background:linear-gradient(135deg,var(--navy) 60%,#1a2e50 100%);color:#fff;text-align:center;padding:14px 16px 12px;border-bottom:3px solid var(--gold)}
+header h1{margin:6px 0 0;font-family:'Playfair Display',Georgia,serif;font-size:clamp(20px,5vw,32px);font-weight:900;color:var(--gold);letter-spacing:1px;text-shadow:0 2px 8px rgba(0,0,0,.3)}
+header div{font-size:14px;color:#b0bec5;margin-top:3px}header div:last-child{color:var(--gold2);font-size:13px}
+nav{display:flex;overflow-x:auto;gap:4px;padding:8px 12px;background:var(--navy2);border-bottom:2px solid var(--gold);position:sticky;top:env(safe-area-inset-top,0px);z-index:5}
+nav button{flex:0 0 auto;border:1.5px solid transparent;background:transparent;color:#b0bec5;padding:7px 16px;border-radius:6px;font-family:'Crimson Pro',Georgia,serif;font-size:15px;cursor:pointer;white-space:nowrap}
+nav button.on,nav button:hover{background:var(--gold);color:var(--navy);font-weight:700;border-color:var(--gold)}
+main{max-width:980px;margin:auto;padding:14px 12px}.tab{display:none}.tab.on{display:block}
+h3{font-family:'Playfair Display',Georgia,serif;color:var(--navy)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+.card{background:#fff;border-radius:12px;padding:14px;box-shadow:var(--shadow)}
+.stat{border-left:5px solid var(--gold);text-align:center}.stat small{color:var(--gray);font-size:13px;display:block;order:2}.stat div{font-family:'Playfair Display',Georgia,serif;font-size:24px;font-weight:900;color:var(--navy);margin-top:2px}
+.s2{border-left-color:var(--green)}.s3{border-left-color:var(--blue)}.s4{border-left-color:var(--red)}.s5{border-left-color:var(--purple)}
+input,select{width:100%;padding:10px 12px;border:1.5px solid var(--bd);border-radius:8px;background:#fff;color:var(--navy);font-family:'Crimson Pro',Georgia,serif;font-size:16px}
+input:focus,select:focus{outline:none;border-color:var(--gold)}
+label{display:block;font-size:13px;font-weight:700;color:var(--navy);margin:10px 0 4px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.btn{border:0;border-radius:8px;padding:9px 16px;font-weight:700;cursor:pointer;color:#fff;background:var(--navy);font-family:'Crimson Pro',Georgia,serif;font-size:15px;text-decoration:none;display:inline-block;letter-spacing:.3px}
+.btn:hover{opacity:.88}.g{background:var(--green)}.y{background:var(--gold);color:var(--navy)}.r{background:var(--red)}.b{background:var(--blue)}.big{width:100%;margin-top:12px;padding:12px;font-size:17px}
+#search{margin:0 0 12px;border-color:var(--gold)}
+.wrap{overflow-x:auto;padding:0}table{width:100%;border-collapse:collapse;font-size:13px}
+th{background:var(--navy);color:var(--gold);padding:10px 8px;text-align:left;font-family:'Playfair Display',Georgia,serif;font-size:12px;white-space:nowrap}
+td{padding:9px 8px;border-bottom:1px solid var(--light);white-space:nowrap}
+.tag{padding:2px 9px;border-radius:20px;font-size:12px;font-weight:700}.ok{background:#d9f2e4;color:#12633a}.no{background:#fbe0dc;color:#a02a1d}
+.act{display:flex;gap:4px}.act a,.act button{padding:5px 8px;font-size:12px;border-radius:6px;border:0;color:#fff;text-decoration:none;cursor:pointer}
+.ov{position:fixed;inset:0;z-index:50;display:none;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--navy) 60%,#1a2e50 100%);padding:18px}
+.box{background:#fff;border-radius:18px;padding:30px 26px;width:100%;max-width:380px;box-shadow:0 20px 60px rgba(0,0,0,.4);border-top:5px solid var(--gold);text-align:center;color:var(--navy)}
+.box h2{margin:0 0 4px;font-family:'Playfair Display',Georgia,serif;color:var(--navy)}.msg{color:var(--red);font-size:13px;min-height:18px}
+.vb{display:flex;flex-direction:column;gap:5px;min-width:150px}.vb a,.vb button{padding:8px 12px;border-radius:7px;border:0;color:#fff;font-size:14px;font-weight:700;text-align:left;white-space:nowrap;text-decoration:none;cursor:pointer;font-family:inherit}
+.mrow{display:flex;gap:6px;overflow-x:auto;padding:4px 2px 8px;-webkit-overflow-scrolling:touch}.mcol{flex:0 0 auto;display:flex;flex-direction:column;gap:4px}.mdel{background:var(--red);color:#fff;border:0;border-radius:8px;padding:8px 6px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;width:100%;white-space:nowrap}.mch{min-width:92px;border:2px solid var(--bd);border-radius:10px;padding:7px 8px;text-align:center;cursor:pointer;background:#fff;font-size:14px;color:var(--navy)}.mch span{display:block;font-size:11px;margin-top:2px;color:var(--gray)}.mch.pe{border-color:var(--red)}.mch.pe span{color:var(--red)}.mch.pa{border-color:var(--orange)}.mch.pa span{color:var(--orange)}.mch.ad{border-style:dashed}.mch.pd{background:#d9f2e4;border-color:var(--green);cursor:default;opacity:.85}.mch.pd span{color:var(--green)}.mch.on{background:var(--gold);border-color:var(--navy)}.mch.on span{color:var(--navy);font-weight:700}
+.hint{font-size:13px;color:var(--gray)}
+</style></head><body>
+
+<div class="ov" id="login" style="display:flex">
+ <div class="box"><div style="font-size:42px">🎓</div><h2>AAFIYA Coaching Centre</h2><div class="hint">Fee Management - Login</div>
+ <label style="text-align:left">Email (User ID)</label><input id="lu" type="email" autocomplete="username">
+ <label style="text-align:left">Password</label><input id="lp" type="password" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()">
+ <div class="msg" id="le"></div><button class="btn big" style="margin-top:4px" onclick="doLogin()">🔐 Login</button></div></div>
+
+<div class="ov" id="pn" style="align-items:flex-start;overflow:auto"><div class="box" id="pnb" style="max-width:460px;text-align:left;margin:10px auto"></div></div>
+<div class="ov" id="lock"><div class="box" style="background:#0a0a0a;color:#fff">
+ <div id="lockIcon" style="font-size:52px;cursor:pointer;user-select:none" onclick="devTap()">🔒</div>
+ <h2 style="color:var(--gold)">Subscription Expired</h2>
+ <p style="font-size:14px;color:#ccc">Please pay <b id="lockAmt"></b> to the developer to reactivate your Fee Management System.</p>
+ <p style="color:var(--gold);font-weight:700;line-height:2">👤 Md Seraj Ahmad<br>📞 9576739852<br>✉️ seraj52.sab@gmail.com</p></div></div>
+
+<div class="ov" id="dev"><div class="box">
+ <h2>Developer Access</h2>
+ <div id="devA"><label style="text-align:left">Developer Email (User ID)</label><input id="dm" type="email" autocomplete="off"><label style="text-align:left">Password</label><input id="dp" type="password" autocomplete="off" onkeydown="if(event.key==='Enter')devLogin()"><div class="msg" id="de"></div>
+  <button class="btn big" onclick="devLogin()">Login</button></div>
+ <div id="devB" style="display:none;text-align:left">
+  <div class="hint" id="devS"></div>
+  <label>Valid Until (blank = no limit)</label><input id="dd" type="date">
+  <label>Renewal Amount (₹)</label><input id="da" type="number">
+  <div class="row" style="margin-top:12px"><button class="btn g" onclick="devSet('active')">✅ Enable</button><button class="btn r" onclick="devSet('blocked')">⛔ Block</button></div></div>
+ <button class="btn" style="margin-top:12px;background:#6b7280;width:100%" onclick="devClose()">Close</button></div></div>
+
+<div class="pb"><span>Powered by</span><i>|</i><b onclick="devTap()">🎓 Seraj Edu Fee Management System</b><i>|</i><span>📞 +91 95767 39852</span></div>
+<header><h1>🎓 AAFIYA COACHING CENTRE</h1>
+<div>Narahua Tapu, Pathraha, Ward No-05, Post: Ghurna Bazar, Dist: Araria, Bihar - 854336</div>
+<div>Chairperson: Md Hasangir Khan | Contact: 9262515150</div></header>
+<nav id="nav"></nav>
+<main>
+<section class="tab" id="t-home"><input id="search" placeholder="🔍 Search student, father, mobile or class..." oninput="renderList()">
+ <div class="grid" id="cards"></div>
+ <div id="panel"></div><div id="results"></div><div id="listCard"><h3>Students</h3><div class="card wrap"><table id="list"></table></div></div></section>
+
+<section class="tab" id="t-add"><div class="card"><h3 style="margin:0">➕ Add Student</h3>
+ <label>Student Name</label><input id="an"><label>Father's Name</label><input id="af">
+ <label>Mobile Number</label><input id="am" type="tel" maxlength="10" inputmode="numeric">
+ <div class="row"><div><label>Class</label><select id="ac" onchange="autoFee()"></select></div><div><label>Section</label><select id="as"><option>A</option><option>B</option></select></div></div>
+ <div class="row"><div><label>Monthly Fee (₹) - editable</label><input id="afee" type="number"></div><div><label>Date (live)</label><input id="ad" type="date"></div></div>
+ <button class="btn g big" onclick="saveStudent()">💾 Save &amp; Send WhatsApp</button></div></section>
+
+
+<section class="tab" id="t-cls"><div class="card"><h3 style="margin:0">📚 Class-wise Fee Detail</h3>
+ <div class="row"><div><label>Class</label><select id="cc" onchange="renderCls()"></select></div><div><label>Month</label><input type="month" id="cm" onchange="renderCls()"></div></div>
+ <button class="btn big" style="margin-top:10px" onclick="clsPdf()">📄 Is Class ki PDF Report</button></div><div id="clsOut"></div></section>
+<section class="tab" id="t-ctl"><div class="card"><h3 style="margin:0">🛡 Control Panel - Staff Access</h3><div class="hint">Staff sirf Home se Payment Collection kar sakta hai. Baaki sab Owner ke liye hai. Firebase Authentication me jo email/password bane hain, wo login karte hi niche "Naye Login Users" me dikhte hain (password kabhi show nahi hota).</div>
+ <div class="row"><div><label>Staff Name</label><input id="sn"></div><div><label>Email (User ID)</label><input id="su" type="email" autocomplete="off"></div></div>
+ <label style="display:flex;gap:8px;align-items:center"><input type="checkbox" id="sv" style="width:auto"> 👁 Amounts dekh sake (Dashboard unlock)</label>
+ <label style="display:flex;gap:8px;align-items:center"><input type="checkbox" id="sd" style="width:auto"> 🗑 Delete kar sake (Trash me jayega)</label>
+ <button class="btn g big" onclick="addStaff()">➕ Staff Add Karein</button></div><div id="newUsers"></div><div id="staffList"></div></section>
+<section class="tab" id="t-trash"><div class="card"><h3 style="margin:0">🗑 Trash Folder (sirf Owner)</h3><div class="hint">Delete kiye students aur payments yahan aate hain. Kisne delete kiya wo bhi dikhta hai. Restore ya hamesha ke liye delete kar sakte hain.</div><button class="btn r" style="margin-top:8px" onclick="emptyTrash()">Empty Trash</button></div><div id="trashList" style="margin-top:10px"></div></section>
+<section class="tab" id="t-fees"><div class="card"><h3 style="margin:0">📋 Class-wise Monthly Fee (editable)</h3><div class="grid" id="feeGrid" style="margin-top:10px"></div>
+ <button class="btn g big" onclick="saveFees()">💾 Save Fee Structure</button>
+ <hr style="border:0;border-top:1px solid var(--bd);margin:16px 0"><h4 style="margin:0">🔑 Change Login</h4>
+ <div class="hint">Email/Password Firebase Authentication se chalta hai.</div><label>Email (User ID)</label><input id="nu" readonly>
+ <button class="btn big" onclick="saveLogin()">📧 Password Reset Email Bhejein</button></div></section>
+
+<section class="tab" id="t-rep"><div class="card"><h3 style="margin:0">📊 Reports</h3>
+ <div class="row"><div><label>Month</label><input type="month" id="rm"></div><div><label>Class (optional)</label><select id="rc"></select></div></div>
+ <button class="btn big" onclick="monthReport()">📄 Month-wise Report (PDF)</button>
+ <button class="btn r big" onclick="allDemand()">📑 All Demand Bills (PDF)</button>
+ <button class="btn y big" onclick="pendingReport()">📄 Full Pending Report (PDF)</button>
+ <button class="btn b big" onclick="todayReport()">📄 Today's Collection (PDF)</button>
+ <hr style="border:0;border-top:1px solid var(--bd);margin:16px 0">
+ <button class="btn g" onclick="backup()">⬇️ Backup</button> <label style="display:inline-block" class="btn y">⬆️ Restore<input type="file" accept=".json" hidden onchange="restore(event)"></label></div></section>
+</main>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+<script>
+const $=id=>document.getElementById(id);
+const CL=['JKG','SKG','I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII'];
+const DEF={};CL.forEach((c,i)=>DEF[c]=500+i*50);
+const DEV='© 2026 Seraj Edu Fee Management System. For School Management Software & Custom Solutions, Contact: +91 95767 39852 | seraj52.sab@gmail.com';
+const NAME='AAFIYA COACHING CENTRE',ADDR='Narahua Tapu, Pathraha, Ward No-05, Post: Ghurna Bazar, Dist: Araria, Bihar - 854336',DIR='Chairperson: Md Hasangir Khan | Contact: 9262515150';
+const devApp=firebase.initializeApp(firebaseConfig,'dev'),devAuth=firebase.auth(devApp),devDb=firebase.database(devApp);
+function ld(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}}
+// ---------- Firebase (Auth + Realtime Database + localStorage) ----------
+const firebaseConfig={apiKey:"AIzaSyB2cXkBEwP1hhq-DoS_hgReWiuqsTUEoDk",authDomain:"aafiya-coaching-centre.firebaseapp.com",projectId:"aafiya-coaching-centre",storageBucket:"aafiya-coaching-centre.firebasestorage.app",messagingSenderId:"1048864253771",appId:"1:1048864253771:web:e902f43a780f1d27de2ace",measurementId:"G-K7X78C7827",
+ databaseURL:"https://aafiya-coaching-centre-default-rtdb.firebaseio.com"}; // Realtime DB ka URL alag ho to yahan badlein
+firebase.initializeApp(firebaseConfig);
+const fauth=firebase.auth(),fdb=firebase.database();
+const SYNC=['af_students','af_pays','af_fees','af_lic','af_staff','af_trash'];
+let DBON=false,OWNER=null,USERS={};
+function sv(k,v){const j=JSON.stringify(v);try{localStorage.setItem(k,j)}catch(e){}if(DBON&&SYNC.includes(k))fdb.ref('af/'+k).set(j).catch(e=>console.warn('DB save',e))}
+let S=ld('af_students',[]),P=ld('af_pays',[]),F=ld('af_fees',DEF),LIC=ld('af_lic',{status:'active',expiry:'',amount:21999}),ST=ld('af_staff',[]),TRS=ld('af_trash',[]),CUR=null;
+const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const today=()=>{const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')};
+const ym=d=>d.slice(0,7),fm=n=>'₹'+Number(n||0).toLocaleString('en-IN');
+const mname=m=>new Date(m+'-01T00:00:00').toLocaleString('en-GB',{month:'short',year:'numeric'});
+const addM=(m,n)=>{let[y,mo]=m.split('-').map(Number);mo+=n;y+=Math.floor((mo-1)/12);mo=((mo-1)%12)+1;return y+'-'+String(mo).padStart(2,'0')};
+const fdate=d=>d?new Date(d+'T00:00:00').toLocaleDateString('en-GB'):'—';
+const num=m=>'91'+String(m).replace(/\D/g,'').replace(/^0/,'').replace(/^91(?=\d{10}$)/,'');
+const cur=()=>ym(today());
+// ---------- license / developer ----------
+function checkLic(){const exp=LIC.expiry&&LIC.expiry<today();const lk=LIC.status==='blocked'||exp;$('lock').style.display=lk?'flex':'none';$('lockAmt').textContent=fm(LIC.amount)}
+let taps=0,tt;function devTap(){taps++;clearTimeout(tt);tt=setTimeout(()=>taps=0,6000);if(taps>=30){taps=0;$('dev').style.display='flex';$('devA').style.display='block';$('devB').style.display='none';$('dp').value='';$('de').textContent=''}}
+function devOpen(){$('devA').style.display='none';$('devB').style.display='block';devShow()}
+async function devLogin(){const e=$('dm').value.trim().toLowerCase(),p=$('dp').value;if(!e||!p){$('de').textContent='❌ Email aur Password likhein';return}
+ $('de').textContent='⏳ Login ho raha hai...';let u;
+ try{u=await devAuth.signInWithEmailAndPassword(e,p)}catch(x){$('de').textContent='❌ Incorrect Email or Password';return}
+ let ok=false;try{const dv=(await devDb.ref('developer').once('value')).val();ok=!!dv&&dv.uid===u.user.uid}catch(x){ok=false}
+ if(!ok){await devAuth.signOut().catch(()=>{});$('de').textContent='❌ Ye account Developer ka nahi hai';return}
+ try{const sn=await devDb.ref('af/af_lic').once('value');if(sn.val()){LIC=JSON.parse(sn.val());localStorage.setItem('af_lic',sn.val())}}catch(x){}
+ $('de').textContent='';devOpen()}
+function devClose(){$('dev').style.display='none';$('dp').value='';devAuth.signOut().catch(()=>{})}
+function devShow(){$('devS').innerHTML='Status: <b>'+(LIC.status==='blocked'?'⛔ Blocked':'✅ Active')+'</b> | Valid till: <b>'+(LIC.expiry||'No limit')+'</b>';$('dd').value=LIC.expiry||'';$('da').value=LIC.amount}
+function devSet(s){LIC={status:s,expiry:$('dd').value,amount:Number($('da').value)||21999};const j=JSON.stringify(LIC);try{localStorage.setItem('af_lic',j)}catch(e){}
+ devDb.ref('af/af_lic').set(j).then(()=>{devShow();checkLic()}).catch(e=>alert('Save nahi hua: '+(e.code||e.message)+' (Firebase Rules check karein)'))}
+// ---------- login / nav ----------
+function doLogin(){const e=$('lu').value.trim().toLowerCase(),p=$('lp').value;if(!e||!p){$('le').textContent='❌ Email aur Password likhein';return}
+ $('le').textContent='⏳ Login ho raha hai...';fauth.signInWithEmailAndPassword(e,p).catch(()=>{$('le').textContent='❌ Wrong Email or Password'})}
+let BUSY=false;
+async function afterAuth(user){if(BUSY||CUR)return;BUSY=true;const em=(user.email||'').toLowerCase();
+ try{
+  await fdb.ref('users/'+user.uid).set({email:em,last:new Date().toISOString()});
+  const tr=await fdb.ref('owner').transaction(c=>c||{email:em,uid:user.uid});OWNER=tr.snapshot.val();
+  let role=null,st=null;
+  if(OWNER.uid===user.uid||OWNER.email===em)role='owner';
+  else{const sn=await fdb.ref('af/af_staff').once('value');let arr=[];try{arr=JSON.parse(sn.val()||'[]')}catch(e){}st=arr.find(x=>(x.u||'').toLowerCase()===em);if(st)role='staff'}
+  if(!role){$('le').innerHTML='⏳ Login sahi hai ('+esc(em)+'), lekin abhi Owner ne access nahi diya. Owner se Control Panel me access dene ko kahein.';await fauth.signOut();BUSY=false;return}
+  DBON=true;
+  fdb.ref('af').on('value',onRemote);
+  if(role==='owner')fdb.ref('users').on('value',sn=>{USERS=sn.val()||{};if(CUR&&ACT==='ctl')renderCtl()});
+  start({role,name:role==='owner'?'Owner':st.name,id:role==='owner'?'owner':st.id,email:em});
+ }catch(err){console.error(err);$('le').textContent='❌ Database error: '+(err.code||err.message)+' (Firebase Rules check karein)';try{await fauth.signOut()}catch(e){}}
+ BUSY=false}
+function applyKey(k,v){if(k==='af_students')S=v;else if(k==='af_pays')P=v;else if(k==='af_fees')F=v;else if(k==='af_lic')LIC=v;else if(k==='af_staff')ST=v;else if(k==='af_trash')TRS=v}
+function onRemote(snap){const v=snap.val()||{};let ch=false;
+ SYNC.forEach(k=>{if(v[k]==null){const l=localStorage.getItem(k);if(l!=null&&k!=='af_lic')fdb.ref('af/'+k).set(l).catch(()=>{});return}
+  if(v[k]!==localStorage.getItem(k)){try{localStorage.setItem(k,v[k]);applyKey(k,JSON.parse(v[k]));ch=true}catch(e){}}});
+ if(!ch)return;checkLic();if(!CUR)return;
+ if(CUR.role==='staff'&&!ST.some(x=>x.id===CUR.id)){alert('Aapka access Owner ne hata diya hai.');logout();return}
+ CL.forEach(c=>{const e=$('f-'+c);if(e)e.value=F[c]||0});
+ drawNav();if(ACT==='home')renderAll();else if(ACT==='cls')renderCls();else if(ACT==='ctl')renderCtl();else if(ACT==='trash')renderTrash()}
+// ---------- calculations ----------
+const pad=n=>String(n).padStart(3,'0');
+const mdiff=(a,b)=>{const[y1,m1]=a.split('-').map(Number),[y2,m2]=b.split('-').map(Number);return(y2-y1)*12+m2-m1};
+const spays=s=>P.filter(p=>p.sid===s.id).sort((a,b)=>a.rno-b.rno);
+const ptotal=s=>spays(s).reduce((a,p)=>a+p.amt,0);
+const dets=p=>p.det||(p.months||[]).map(m=>({m,amt:(S.find(x=>x.id===p.sid)||{fee:0}).fee}));
+function mpaid(s,m){let t=0;spays(s).forEach(p=>dets(p).forEach(d=>{if(d.m===m)t+=d.amt}));return t}
+function mst(s,m){const k=mdiff(ym(s.date),m);if(k<0)return null;const pd=mpaid(s,m);return{paid:pd,bal:Math.max(0,s.fee-pd),k}}
+function mdate(s,m){let r='';spays(s).forEach(p=>{if(dets(p).some(d=>d.m===m&&d.amt>0))r=p.date});return r}
+function stats(s){const c=cur(),st=ym(s.date);let due=0,months=[],bals={},adv=0;
+ for(let m=st;m<=c;m=addM(m,1)){const q=mst(s,m);if(q.bal>0){due+=q.bal;months.push(m);bals[m]=q.bal}if(q.paid>s.fee)adv+=q.paid-s.fee}
+ spays(s).forEach(p=>dets(p).forEach(d=>{if(d.m>c)adv+=d.amt}));
+ const cq=st<=c?mst(s,c):null;return{due,months,bals,tot:ptotal(s),adv,cdue:cq?cq.bal:0,adm:st<=c}}
+let PANEL=null;
+function renderAll(){const t=today(),c=cur();let tc=0,mc=0,pend=0,cp=0,adv=0,pc=0;
+ P.forEach(p=>{if(p.date===t)tc+=p.amt;if(ym(p.date)===c)mc+=p.amt});
+ S.forEach(s=>{const x=stats(s);pend+=x.due;cp+=x.cdue;adv+=x.adv;if(x.adm&&!x.cdue)pc++});
+ const C=[['Total Students',S.length,'','all'],["Today's Collection",fm(tc),'s2','today'],['Monthly Collection',fm(mc),'s2','mcol'],['Paid This Month',pc+' students','s2','paid'],['Total Pending',fm(pend),'s4','pend'],['This Month Pending',fm(cp),'s3','cpend'],['Advance Payment',fm(adv),'s5','adv']];
+ const LK=['today','mcol','pend','cpend','adv'];$('cards').innerHTML=C.map(x=>!canView()&&LK.includes(x[3])?`<div class="card stat" style="opacity:.8;border-left-color:var(--gray)"><small>${x[0]}</small><div>🔒 Locked</div><small style="color:var(--gray)">Owner se access lein</small></div>`:`<div class="card stat ${x[2]}" style="cursor:pointer" onclick="showPanel('${x[3]}')"><small>${x[0]}</small><div>${x[1]}</div><small style="color:var(--gold);font-weight:700">👆 Tap to view</small></div>`).join('');
+ renderPanel();renderList()}
+function showPanel(k){if(!canView()&&['today','mcol','pend','cpend','adv'].includes(k))return;PANEL=PANEL===k?null:k;renderPanel();if(PANEL)$('panel').scrollIntoView({behavior:'smooth',block:'start'})}
+function renderPanel(){const el=$('panel'),k=PANEL;if(!k){el.innerHTML='';return}const c=cur(),t=today();
+ const T={all:'👥 Total Students',today:"💰 Today's Collection",mcol:'💰 Monthly Collection - '+mf(c),paid:'✅ Is Month Paid - '+mf(c),pend:'🔴 Total Pending - Kon kon pay nahi kiya',cpend:'🟠 This Month Pending - '+mf(c),adv:'🟣 Advance Payment Students'};
+ let L=[];const X=S.map(s=>({s,x:stats(s)}));
+ if(k==='all')L=S.map(s=>({s,i:s.cls+'-'+s.sec+(canView()?' | Fee '+fm(s.fee):'')}));
+ if(k==='today'||k==='mcol')L=P.filter(p=>k==='today'?p.date===t:ym(p.date)===c).map(p=>({s:S.find(x=>x.id===p.sid),i:'Paid '+fm(p.amt)+' on '+fdate(p.date)+' | Receipt '+pad(p.rno)+(p.due>0?' | Balance '+fm(p.due):'')})).filter(o=>o.s);
+ if(k==='paid')L=X.filter(o=>o.x.adm&&!o.x.cdue).map(o=>({s:o.s,i:'✅ '+mname(c)+' paid'+(canView()?' '+fm(o.s.fee):'')+(mdate(o.s,c)?' on '+fdate(mdate(o.s,c)):'')}));
+ if(k==='pend')L=X.filter(o=>o.x.due).map(o=>({s:o.s,bad:1,i:'Pending '+fm(o.x.due)+' ('+o.x.months.map(m=>mname(m)+(o.x.bals[m]<o.s.fee?' '+fm(o.x.bals[m]):'')).join(', ')+')'}));
+ if(k==='cpend')L=X.filter(o=>o.x.cdue).map(o=>({s:o.s,bad:1,i:mname(c)+' ka balance '+fm(o.x.cdue)+(o.x.cdue<o.s.fee?' (partial paid)':'')}));
+ if(k==='adv')L=X.filter(o=>o.x.adv).map(o=>({s:o.s,i:'Advance '+fm(o.x.adv)}));
+ el.innerHTML=`<div class="card" style="margin:12px 0;border-top:4px solid var(--gold)"><div style="display:flex;justify-content:space-between;align-items:center;gap:8px"><h3 style="margin:0">${T[k]} <span class="tag ${L.length&&L[0].bad?'no':'ok'}">${L.length}</span></h3><button class="btn r" style="padding:4px 12px" onclick="PANEL=null;renderPanel()">✕ Close</button></div>`+
+ (L.length?L.map(o=>`<div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;padding:10px 0;border-bottom:1px solid var(--light)"><div style="flex:1;min-width:170px"><b style="font-size:17px">${esc(o.s.name)}</b><div class="hint">Father: ${esc(o.s.father)} | Class ${o.s.cls}-${o.s.sec}</div><div class="hint">📱 ${esc(o.s.mobile)}</div><div style="margin-top:4px;font-size:14px;color:${o.bad?'var(--red)':'var(--green)'};font-weight:700">${o.i}</div></div>
+ <div class="vb"><button style="background:var(--green)" onclick="openPay('${o.s.id}')">💰 Pay Now</button>${callBtns(o.s)}</div></div>`).join(''):'<p class="hint">Koi student nahi hai.</p>')+'</div>'}
+function callBtns(s){return `<a style="background:var(--blue)" href="tel:${esc(s.mobile)}">📞 Call</a><button style="background:#25d366" onclick="remind('${s.id}','wa')">💬 WhatsApp</button><button style="background:#00838f" onclick="remind('${s.id}','sms')">📱 SMS</button>`}
+function rowBtns(s){return callBtns(s)+`<button style="background:var(--orange)" onclick="slip('${s.id}')">🧾 Payment Receipt</button>`+(canView()?`<button style="background:var(--purple)" onclick="demand('${s.id}')">📑 Demand Bill</button><button style="background:var(--navy)" onclick="ledger('${s.id}')">📋 Full PDF Report</button>`:'')+(canDel()?`<button style="background:var(--red)" onclick="del('${s.id}')">🗑 Delete</button>`:'')}
+function renderList(){const q=$('search').value.toLowerCase().trim();
+ const L=S.filter(s=>!q||[s.name,s.father,s.mobile,s.cls,s.cls+s.sec,'class '+s.cls].join(' ').toLowerCase().includes(q));
+ $('listCard').style.display=q?'none':'block';$('results').innerHTML='';
+ if(q){$('results').innerHTML=L.length?L.map(s=>{const x=stats(s);return`<div class="card" style="margin-bottom:10px;border-left:5px solid ${x.due?'var(--red)':'var(--green)'}"><div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap">
+  <div style="flex:1;min-width:170px"><b style="font-size:18px;font-family:'Playfair Display',Georgia,serif">${esc(s.name)}</b><div class="hint">Father: ${esc(s.father)} | Class ${s.cls}-${s.sec}</div><div class="hint">📱 ${esc(s.mobile)} | Fee: ${mk(s.fee)}/month</div>
+  <div style="margin-top:6px"><span class="tag ${x.due?'no':'ok'}">${x.due?'Pending '+mk(x.due):'All Clear'}</span></div>${x.due?`<div class="hint" style="margin-top:6px">Unpaid: ${x.months.map(mname).join(', ')}</div>`:''}</div>
+  <div class="vb"><button style="background:var(--green)" onclick="openPay('${s.id}')">💰 Pay Now</button>${rowBtns(s)}</div></div></div>`}).join(''):'<div class="card hint">Koi student nahi mila.</div>';return}
+ $('list').innerHTML='<tr><th>#</th><th>Student</th><th>Father</th><th>Class</th><th>Fee</th><th>Pending</th><th>Actions</th></tr>'+
+ (L.map((s,i)=>{const x=stats(s);return`<tr><td>${i+1}</td><td><b>${esc(s.name)}</b><br><span class="hint">${esc(s.mobile)}</span></td><td>${esc(s.father)}</td><td>${s.cls}-${s.sec}</td><td>${mk(s.fee)}</td><td><span class="tag ${x.due?'no':'ok'}">${x.due?mk(x.due):'Clear'}</span></td><td><div class="vb"><button style="background:var(--green)" onclick="openPay('${s.id}')">💰 Pay Now</button>${rowBtns(s)}</div></td></tr>`}).join('')||'<tr><td colspan="7">No students found</td></tr>')}
+// ---------- Pay Now popup ----------
+let PN=null,PNSEL={};
+function openPay(id){PN=id;const s=S.find(x=>x.id===id),x=stats(s);PNSEL={};x.months.forEach(m=>PNSEL[m]=x.bals[m]);renderPN();$('pn').style.display='flex'}
+function closePay(){$('pn').style.display='none'}
+function pnChips(){const s=S.find(x=>x.id===PN),c=cur(),st=ym(s.date);let h='';
+ for(let m=st;m<=addM(c,11);m=addM(m,1)){const q=mst(s,m),sel=m in PNSEL;let cl,sub;
+  if(q.bal===0){cl='pd';sub='✅ Paid'}else if(q.paid>0){cl='pa';sub='Bal '+fm(q.bal)}else if(m<=c){cl='pe';sub=fm(q.bal)+' due'}else{cl='ad';sub='Advance'}
+  h+=`<div class="mcol"><div class="mch ${cl} ${sel?'on':''}" ${q.bal===0?'':`onclick="pnToggle('${m}')"`}><b>${mname(m)}</b><span>${sel?'✔ Selected':sub}</span></div>${q.paid>0&&canDel()?`<button class="mdel" onclick="delMonth('${m}')">🗑 Delete ${fm(q.paid)}</button>`:''}</div>`}
+ const el=$('pnch'),sl=el.scrollLeft;el.innerHTML=h;el.scrollLeft=sl}
+const pnT=()=>Object.values(PNSEL).reduce((a,b)=>a+b,0);
+function pnSelHtml(){const ks=Object.keys(PNSEL).sort();
+ $('pnsel').innerHTML=ks.length?ks.map(m=>`<div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--light)"><span>${mf(m)}</span><b>${fm(PNSEL[m])}</b></div>`).join(''):'<div class="hint">Upar se month chunein (advance month bhi chun sakte hain).</div>';
+ $('pna').value=pnT()||'';pnCalc()}
+function pnToggle(m){const s=S.find(x=>x.id===PN);if(m in PNSEL)delete PNSEL[m];else{const q=mst(s,m);PNSEL[m]=q.bal>0?q.bal:s.fee}pnChips();pnSelHtml()}
+function pnCalc(){const T=pnT(),r=Number($('pna').value)||0,d=T-r,e=$('pnm');$('pnt').textContent=fm(T);
+ if(!T){e.textContent='';return}
+ if(d>0){e.style.color='var(--red)';e.textContent='🔴 Shortfall (Baaki): '+fm(d)+' - ye balance me rahega'}
+ else if(d<0){e.style.color='var(--green)';e.textContent='Extra: '+fm(-d)+' - advance me jud jayega'}
+ else{e.style.color='var(--green)';e.textContent='✅ Poora payment'}}
+function renderPN(){const s=S.find(x=>x.id===PN);if(!s)return closePay();const x=stats(s);
+ $('pnb').innerHTML=`<div style="display:flex;justify-content:space-between;align-items:flex-start"><div><h2 style="margin:0">${esc(s.name)}</h2><div class="hint">Father: ${esc(s.father)} | Class ${s.cls}-${s.sec}</div><div class="hint">📱 ${esc(s.mobile)} | Fee: <b>${fm(s.fee)}</b>/month</div></div><button class="btn r" style="padding:4px 10px" onclick="closePay()">✕</button></div>
+ <div style="margin:10px 0;padding:8px;border-radius:8px;background:${x.due?'#fbe0dc':'#d9f2e4'};font-weight:700">${x.due?'Total Pending: '+fm(x.due)+' ('+x.months.length+' month'+(x.months.length>1?'s':'')+')':'✅ Koi bakaya nahi hai'}${x.adv?' | Advance '+fm(x.adv):''}</div>
+ <div style="font-weight:700;margin-bottom:4px">Month chunein (tap karein) 👉</div><div id="pnch" class="mrow"></div>
+ <div id="pnsel" style="margin-top:6px"></div>
+ <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px;padding:8px;background:var(--light);border-radius:8px;font-weight:700"><span>Total Payable</span><span id="pnt" style="font-size:20px;font-family:'Playfair Display',Georgia,serif"></span></div>
+ <label>Amount Received (₹) - yahan badal sakte hain</label><input type="number" id="pna" oninput="pnCalc()" style="font-size:20px;font-weight:700"><div class="hint" id="pnm" style="font-weight:700;margin-top:6px;font-size:15px"></div>
+ <button class="btn g big" onclick="pnPay()">✅ Pay Now / Receive Payment</button>
+ <div id="pnh"></div>
+ <div class="vb" style="margin-top:10px"><a href="tel:${esc(s.mobile)}" style="background:var(--blue)">📞 Call</a><button style="background:#25d366" onclick="remind('${s.id}','wa')">💬 WhatsApp</button><button style="background:#00838f" onclick="remind('${s.id}','sms')">📱 SMS</button>${canView()?`<button style="background:var(--purple)" onclick="demand('${s.id}')">📑 Demand Bill</button><button style="background:var(--navy)" onclick="ledger('${s.id}')">📋 Full PDF Report</button>`:''}</div>`;pnChips();pnSelHtml();pnHist()}
+function pnPay(){const s=S.find(x=>x.id===PN),ks=Object.keys(PNSEL).sort();let rem=Number($('pna').value)||0;
+ if(!ks.length)return alert('Kam se kam ek month chunein.');if(rem<=0)return alert('Amount Received likhein.');
+ const det=[];ks.forEach(m=>{const a=Math.min(rem,PNSEL[m]);if(a>0){det.push({m,amt:a});rem-=a}});if(rem>0)det[det.length-1].amt+=rem;
+ det.forEach(d=>d.bal=Math.max(0,s.fee-(mpaid(s,d.m)+d.amt)));
+ const amt=det.reduce((a,d)=>a+d.amt,0),rno=(P.length?Math.max(...P.map(p=>p.rno)):0)+1,p={rno,sid:s.id,date:today(),amt,months:det.map(d=>d.m),det,by:CUR.name};P.push(p);p.due=stats(s).due;sv('af_pays',P);
+ closePay();renderAll();if(confirm('✅ Payment save ho gayi (Receipt #'+pad(rno)+')'+(p.due>0?'\nBalance baaki: '+fm(p.due):'')+'\n\nPayment Receipt kholni hai?'))slip(s.id,rno)}
+function pnHist(){const s=S.find(x=>x.id===PN),L=spays(s).reverse(),dl=canDel();
+ $('pnh').innerHTML=`<div style="font-weight:700;margin:14px 0 4px">🧾 Payment History${dl?' - galat entry delete karein':''}</div>`+(L.length?L.map(p=>{const D=dets(p);return`<div style="border:1px solid var(--bd);border-radius:8px;padding:6px 8px;margin-bottom:8px"><div style="display:flex;justify-content:space-between;align-items:center;gap:6px"><div style="font-size:13px"><b>Receipt ${pad(p.rno)}</b> | ${fdate(p.date)} | <b>${fm(p.amt)}</b>${p.by?' | 👤 '+esc(p.by):''}</div>${dl?`<button class="btn r" style="padding:3px 8px;font-size:12px" onclick="delRcpt(${p.rno})">🗑 Poori Receipt</button>`:''}</div>`+D.map(d=>`<div style="display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-top:1px dotted var(--bd)"><span>${mf(d.m)} - <b>${fm(d.amt)}</b></span>${dl?`<button class="btn r" style="padding:3px 8px;font-size:12px" onclick="delPay(${p.rno},'${d.m}')">🗑 Delete</button>`:''}</div>`).join('')+'</div>'}).join(''):'<div class="hint">Abhi tak koi payment nahi hui.</div>')}
+function pnReset(sid){const s=S.find(x=>x.id===sid),x=stats(s);PNSEL={};x.months.forEach(k=>PNSEL[k]=x.bals[k]);renderAll();renderPN()}
+function recalc(s){P.filter(p=>p.sid===s.id).forEach(p=>(p.det||[]).forEach(d=>d.bal=Math.max(0,s.fee-mpaid(s,d.m))))}
+function delPay(rno,m){if(!needDel())return;const p=P.find(x=>x.rno===rno);if(!p)return;const s=S.find(x=>x.id===p.sid),D=dets(p),r=D.find(d=>d.m===m);
+ if(!confirm('Receipt '+pad(rno)+' me se '+mf(m)+' ka payment Trash me bhejein?'))return;
+ tpay(s,mf(m)+' '+fm(r.amt)+' (Receipt '+pad(rno)+')',[{rno,date:p.date,det:[{m:r.m,amt:r.amt}]}]);
+ p.det=D.filter(d=>d.m!==m);
+ if(!p.det.length)P=P.filter(x=>x.rno!==rno);else{p.amt=p.det.reduce((a,d)=>a+d.amt,0);p.months=p.det.map(d=>d.m);delete p.due}
+ recalc(s);sv('af_pays',P);pnReset(s.id)}
+function delMonth(m){if(!needDel())return;const s=S.find(x=>x.id===PN),t=mpaid(s,m);if(!t)return;
+ if(!confirm(mf(m)+' ka '+fm(t)+' ka payment Trash me bhejein?'))return;
+ const parts=[];spays(s).forEach(p=>{const D=dets(p),r=D.filter(d=>d.m===m);if(!r.length)return;parts.push({rno:p.rno,date:p.date,det:r.map(d=>({m:d.m,amt:d.amt}))});
+  p.det=D.filter(d=>d.m!==m);if(!p.det.length)P=P.filter(x=>x.rno!==p.rno);else{p.amt=p.det.reduce((a,d)=>a+d.amt,0);p.months=p.det.map(d=>d.m);delete p.due}});
+ tpay(s,mf(m)+' '+fm(t),parts);recalc(s);sv('af_pays',P);pnReset(s.id)}
+function delRcpt(rno){if(!needDel())return;const p=P.find(x=>x.rno===rno);if(!p)return;const s=S.find(x=>x.id===p.sid);
+ if(!confirm('Poori Receipt '+pad(rno)+' ('+fm(p.amt)+') Trash me bhejein?'))return;
+ tpay(s,'Receipt '+pad(rno)+' '+fm(p.amt),[{rno,date:p.date,det:dets(p).map(d=>({m:d.m,amt:d.amt}))}]);
+ P=P.filter(x=>x.rno!==rno);sv('af_pays',P);pnReset(s.id)}
+// ---------- Class-wise fee detail ----------
+let CF='all';
+function setCF(f){CF=f;renderCls()}
+function pickCls(c){$('cc').value=c;renderCls()}
+function renderCls(){const m=$('cm').value||cur(),c=$('cc').value;
+ let A=S.filter(s=>ym(s.date)<=m&&(!c||s.cls===c)).sort((a,b)=>CL.indexOf(a.cls)-CL.indexOf(b.cls)||a.sec.localeCompare(b.sec)||a.name.localeCompare(b.name));
+ const Q=A.map(s=>({s,q:mst(s,m)}));const pd=Q.filter(o=>!o.q.bal),up=Q.filter(o=>o.q.bal);
+ const col=Q.reduce((a,o)=>a+o.q.paid,0),due=Q.reduce((a,o)=>a+o.q.bal,0);
+ let h=`<div class="grid" style="margin:10px 0"><div class="card stat"><small>Students</small><div>${A.length}</div></div><div class="card stat s2"><small>Paid</small><div>${pd.length}</div></div><div class="card stat s4"><small>Unpaid</small><div>${up.length}</div></div><div class="card stat s2"><small>Collected</small><div>${fm(col)}</div></div><div class="card stat s4"><small>Balance Due</small><div>${fm(due)}</div></div></div>`;
+ if(!c){const rows=CL.map(k=>{const z=Q.filter(o=>o.s.cls===k);if(!z.length)return'';const p=z.filter(o=>!o.q.bal).length;return`<tr style="cursor:pointer" onclick="pickCls('${k}')"><td><b>${k}</b></td><td>${z.length}</td><td><span class="tag ok">${p}</span></td><td><span class="tag no">${z.length-p}</span></td><td>${fm(z.reduce((a,o)=>a+o.q.paid,0))}</td><td>${fm(z.reduce((a,o)=>a+o.q.bal,0))}</td></tr>`}).join('');
+  h+=`<div class="card wrap" style="margin-bottom:10px"><div class="hint" style="padding:4px 6px">Class par tap karke uske students dekhein</div><table><tr><th>Class</th><th>Students</th><th>Paid</th><th>Unpaid</th><th>Collected</th><th>Balance</th></tr>${rows||'<tr><td colspan="6">Koi student nahi</td></tr>'}</table></div>`}
+ const chip=(k,t,n)=>`<button class="btn ${CF===k?'y':''}" style="${CF===k?'':'background:#fff;color:var(--navy);border:1.5px solid var(--bd)'}" onclick="setCF('${k}')">${t} (${n})</button>`;
+ h+=`<div style="display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 10px">${chip('all','All',A.length)}${chip('paid','✅ Paid',pd.length)}${chip('unpaid','🔴 Unpaid',up.length)}</div>`;
+ const L=CF==='paid'?pd:CF==='unpaid'?up:Q;
+ h+=L.length?L.map(o=>{const s=o.s,q=o.q,st=!q.bal?['ok','✅ Paid']:q.paid>0?['no','Partial']:['no','Unpaid'];return`<div class="card" style="margin-bottom:10px;border-left:5px solid ${q.bal?'var(--red)':'var(--green)'}"><div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap"><div style="flex:1;min-width:170px"><b style="font-size:17px">${esc(s.name)}</b> <span class="tag ${st[0]}">${st[1]}</span><div class="hint">Father: ${esc(s.father)} | Class ${s.cls}-${s.sec}</div><div class="hint">📱 ${esc(s.mobile)} | Fee ${fm(s.fee)}</div><div style="margin-top:4px;font-weight:700;font-size:14px;color:${q.bal?'var(--red)':'var(--green)'}">${mname(m)}: Paid ${fm(q.paid)}${q.bal?' | Balance '+fm(q.bal):''}</div></div><div class="vb"><button style="background:var(--green)" onclick="openPay('${s.id}')">💰 Pay Now</button>${callBtns(s)}</div></div></div>`}).join(''):'<div class="card hint">Koi student nahi hai.</div>';
+ $('clsOut').innerHTML=h}
+function clsPdf(){$('rm').value=$('cm').value||cur();$('rc').value=$('cc').value;monthReport()}
+// ---------- Access control, staff, trash ----------
+const isOwner=()=>!!CUR&&CUR.role==='owner';
+const stf=()=>(CUR&&ST.find(x=>x.id===CUR.id))||{};
+const canView=()=>isOwner()||!!stf().view;
+const canDel=()=>isOwner()||!!stf().del;
+const mk=x=>canView()?fm(x):'🔒';
+const nextRno=()=>(P.length?Math.max(...P.map(p=>p.rno)):0)+1;
+function needDel(){if(canDel())return true;alert('Aapko delete ka access nahi hai. Owner se permission lein.');return false}
+function toTrash(it){it.id='t'+Date.now()+Math.random().toString(36).slice(2,5);it.by=CUR.name;it.role=CUR.role;it.at=new Date().toISOString();TRS.push(it);sv('af_trash',TRS);drawNav()}
+function tpay(s,label,parts){toTrash({type:'payment',sid:s.id,label:s.name+' - '+label,parts})}
+function start(c){CUR=c;$('login').style.display='none';init()}
+function logout(){fauth.signOut().finally(()=>location.reload())}
+let ACT='home';
+function tabs(){return isOwner()?[['home','🏠 Home'],['cls','📚 Class Wise'],['add','➕ Add Student'],['fees','📋 Fees'],['rep','📊 Reports'],['ctl','🛡 Control Panel'],['trash','🗑 Trash'+(TRS.length?' ('+TRS.length+')':'')]]:[['home','🏠 Home']]}
+function drawNav(){if(!CUR)return;$('nav').innerHTML=tabs().map(t=>`<button class="${t[0]===ACT?'on':''}" onclick="go('${t[0]}')">${t[1]}</button>`).join('')+`<button style="margin-left:auto;color:var(--gold2)" onclick="logout()">👤 ${esc(CUR.name)} · 🚪 Logout</button>`}
+function go(t){if(!isOwner()&&t!=='home')return;ACT=t;document.querySelectorAll('.tab').forEach(e=>e.classList.toggle('on',e.id==='t-'+t));drawNav();if(t==='home')renderAll();if(t==='cls')renderCls();if(t==='ctl')renderCtl();if(t==='trash')renderTrash()}
+function addStaff(){if(!isOwner())return;const n=$('sn').value.trim(),u=$('su').value.trim().toLowerCase();
+ if(!n||!u)return alert('Name aur Email likhein.');if((OWNER&&u===OWNER.email)||ST.some(x=>(x.u||'').toLowerCase()===u))return alert('Ye Email pehle se hai.');
+ ST.push({id:'st'+Date.now(),name:n,u,view:$('sv').checked,del:$('sd').checked});sv('af_staff',ST);['sn','su'].forEach(i=>$(i).value='');$('sv').checked=$('sd').checked=false;renderCtl()}
+function giveAccess(uid){const x=USERS[uid];if(!x)return;const n=prompt('Staff ka naam likhein:',(x.email||'').split('@')[0]);if(n===null)return;
+ if(ST.some(y=>(y.u||'').toLowerCase()===x.email))return;ST.push({id:'st'+Date.now(),name:n.trim()||x.email,u:x.email,view:false,del:false});sv('af_staff',ST);renderCtl()}
+function setPerm(id,k,v){const s=ST.find(x=>x.id===id);if(s){s[k]=v;sv('af_staff',ST)}}
+function rmStaff(id){const s=ST.find(x=>x.id===id);if(confirm(s.name+' ka access hata dein?')){ST=ST.filter(x=>x.id!==id);sv('af_staff',ST);renderCtl()}}
+function renderCtl(){const em=new Set(ST.map(x=>(x.u||'').toLowerCase()));if(OWNER)em.add(OWNER.email);
+ const nu=Object.entries(USERS).filter(([id,x])=>x&&x.email&&!em.has(x.email));
+ $('newUsers').innerHTML=nu.length?'<div class="card" style="margin-top:10px;border-left:5px solid var(--gold)"><b>🆕 Naye Login Users (access pending)</b>'+nu.map(([id,x])=>`<div style="display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap;margin-top:8px"><div><b>✉️ ${esc(x.email)}</b><div class="hint">Last login: ${x.last?new Date(x.last).toLocaleString('en-GB'):'—'}</div></div><button class="btn g" onclick="giveAccess('${id}')">✅ Access Do</button></div>`).join('')+'</div>':'';
+ $('staffList').innerHTML=ST.length?ST.map(s=>`<div class="card" style="margin-top:10px"><div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap"><div style="flex:1;min-width:180px"><b style="font-size:17px">👤 ${esc(s.name)}</b><div class="hint">Email (User ID): <b>${esc(s.u)}</b></div>
+ <label style="display:flex;gap:8px;align-items:center;margin:8px 0 2px"><input type="checkbox" style="width:auto" ${s.view?'checked':''} onchange="setPerm('${s.id}','view',this.checked)"> 👁 Amounts dekh sake (Dashboard unlock)</label>
+ <label style="display:flex;gap:8px;align-items:center;margin:2px 0"><input type="checkbox" style="width:auto" ${s.del?'checked':''} onchange="setPerm('${s.id}','del',this.checked)"> 🗑 Delete kar sake (Trash me jayega)</label></div>
+ <div class="vb"><button style="background:var(--red)" onclick="rmStaff('${s.id}')">❌ Access Hatayein</button></div></div></div>`).join(''):'<div class="card hint" style="margin-top:10px">Abhi koi staff nahi hai.</div>'}
+function renderTrash(){$('trashList').innerHTML=TRS.length?[...TRS].reverse().map(t=>`<div class="card" style="margin-bottom:10px;border-left:5px solid var(--red)"><div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap"><div style="flex:1;min-width:180px"><b>${t.type==='student'?'🎓 Student':'💰 Payment'}: ${esc(t.label)}</b>${t.type==='student'?`<div class="hint">Saath me ${(t.pays||[]).length} payment record</div>`:''}<div class="hint">🗑 Deleted by: <b>${esc(t.by)}</b> (${t.role==='owner'?'Owner':'Staff'})</div><div class="hint">🕒 ${new Date(t.at).toLocaleString('en-GB')}</div></div>
+ <div class="vb"><button style="background:var(--green)" onclick="restoreT('${t.id}')">♻️ Restore</button><button style="background:var(--red)" onclick="purgeT('${t.id}')">❌ Delete Forever</button></div></div></div>`).join(''):'<div class="card hint">Trash khali hai.</div>'}
+function restoreT(id){const t=TRS.find(x=>x.id===id);if(!t)return;
+ if(t.type==='student'){if(S.some(x=>x.id===t.student.id))return alert('Ye student pehle se maujood hai.');S.push(t.student);(t.pays||[]).forEach(p=>{if(P.some(x=>x.rno===p.rno))p.rno=nextRno();P.push(p)})}
+ else{const s=S.find(x=>x.id===t.sid);if(!s)return alert('Pehle is student ko Trash se Restore karein.');
+  t.parts.forEach(pt=>{let p=P.find(x=>x.rno===pt.rno&&x.sid===t.sid);if(!p){p={rno:P.some(x=>x.rno===pt.rno)?nextRno():pt.rno,sid:t.sid,date:pt.date,amt:0,months:[],det:[]};P.push(p)}
+   p.det=dets(p).concat(pt.det.map(d=>({m:d.m,amt:d.amt})));p.amt=p.det.reduce((a,d)=>a+d.amt,0);p.months=p.det.map(d=>d.m);delete p.due});
+  P.filter(p=>p.sid===s.id).forEach(p=>p.det.forEach(d=>d.bal=Math.max(0,s.fee-mpaid(s,d.m))))}
+ TRS=TRS.filter(x=>x.id!==id);sv('af_students',S);sv('af_pays',P);sv('af_trash',TRS);renderTrash();drawNav();alert('✅ Restore ho gaya.')}
+function purgeT(id){if(confirm('Hamesha ke liye delete karein? Ye wapas nahi aayega.')){TRS=TRS.filter(x=>x.id!==id);sv('af_trash',TRS);renderTrash();drawNav()}}
+function emptyTrash(){if(TRS.length&&confirm('Poora Trash khali karein? Sab hamesha ke liye delete ho jayega.')){TRS=[];sv('af_trash',TRS);renderTrash();drawNav()}}
+// ---------- add student ----------
+function autoFee(){$('afee').value=F[$('ac').value]||0}
+function saveStudent(){const n=$('an').value.trim(),f=$('af').value.trim(),m=$('am').value.replace(/\D/g,'');
+ if(!n||!f||m.length!==10)return alert('Name, Father name aur 10 digit mobile number zaroori hai.');
+ const s={id:'s'+Date.now(),name:n,father:f,mobile:m,cls:$('ac').value,sec:$('as').value,fee:Number($('afee').value)||0,date:$('ad').value||today(),paid:{}};
+ S.push(s);sv('af_students',S);
+ const msg=`🌟 नमस्कार ${s.father} जी,\n\nआपके बच्चे *${s.name}* का *${NAME}* में Class ${s.cls} (Sec ${s.sec}) में एडमिशन सफलतापूर्वक हो गया है।\n━━━━━━━━━━━━━━━\n📅 Admission Date: ${fdate(s.date)}\n💰 Monthly Fee: ${fm(s.fee)}\n━━━━━━━━━━━━━━━\nधन्यवाद 🙏\n${NAME}\n${ADDR}\n${DIR}`;
+ ['an','af','am'].forEach(i=>$(i).value='');$('ad').value=today();
+ window.open('https://wa.me/'+num(m)+'?text='+encodeURIComponent(msg),'_blank');go('home')}
+// ---------- messages ----------
+function remind(id,how){const s=S.find(x=>x.id===id),x=stats(s);
+ const msg=x.due?`🌟 नमस्कार ${s.father} जी,\n\nआपके बच्चे *${s.name}* (Class ${s.cls}-${s.sec}) की fees बाकी है।\n━━━━━━━━━━━━━━━\nबकाया माह: ${x.months.map(mname).join(', ')}\nकुल बकाया: *${fm(x.due)}*\n━━━━━━━━━━━━━━━\nकृपया जल्द से जल्द fees जमा करें। धन्यवाद 🙏\n${NAME}\n${DIR}`:`🌟 नमस्कार ${s.father} जी,\n\nआपके बच्चे *${s.name}* की सभी fees जमा हैं। कोई बकाया नहीं है। धन्यवाद 🙏\n${NAME}`;
+ window.open(how==='wa'?'https://wa.me/'+num(s.mobile)+'?text='+encodeURIComponent(msg):'sms:'+s.mobile+'?body='+encodeURIComponent(msg),'_blank')}
+function waReceipt(s,p){const det=p.det||p.months.map(m=>({m,amt:s.fee,bal:0})),due=p.due!=null?p.due:stats(s).due;
+ const msg=`🌟 नमस्कार,\n-------------------\nआपके बच्चे *${s.name}* की fees का भुगतान प्राप्त हो गया है।\n━━━━━━━━━━━━━━━\nमहीने:\n${det.map((d,i)=>(i+1)+'. '+mname(d.m)+' - '+fm(d.amt)+(d.bal>0?' (बाकी '+fm(d.bal)+')':'')).join('\n')}\n━━━━━━━━━━━━━━━\nTotal Paid = *${fm(p.amt)}*\nReceipt No: ${pad(p.rno)} | Date: ${fdate(p.date)}\nबाकी राशि (Balance): *${fm(due)}*\n━━━━━━━━━━━━━━━\nधन्यवाद 🙏\n${NAME}\n${DIR}`;
+ return 'https://wa.me/'+num(s.mobile)+'?text='+encodeURIComponent(msg)}
+// ---------- print helpers (Integral-style layout) ----------
+const longDate=()=>new Date().toLocaleDateString('en-GB',{day:'2-digit',month:'long',year:'numeric'});
+const AYs=()=>{const d=new Date(),y=d.getFullYear();return d.getMonth()>=3?y:y-1};
+const ayl=()=>AYs()+'–'+String(AYs()+1).slice(2);
+const mf=m=>new Date(m+'-01T00:00:00').toLocaleString('en-GB',{month:'long',year:'numeric'});
+function page(body,note){return `<div class="pg"><div class="hbox"><div class="hn">AAFIYA COACHING CENTRE</div><div class="hs"><i>${ADDR}</i></div><hr><div class="hs">Chairperson: Md Hasangir Khan &nbsp;|&nbsp; Mob: 9262515150</div></div><div class="gen">Report Generated: ${longDate()} &nbsp;|&nbsp; Academic Year ${ayl()}</div>${body}<div class="note">${note||'🔔 कृपया शीघ्र भुगतान करें &nbsp;|&nbsp; Please pay at the earliest'} &nbsp;|&nbsp; Contact: 9262515150</div><div class="fdev">${DEV}</div></div>`}
+function printWin(title,pages,extra){const w=window.open('','_blank');if(!w)return alert('Popup allow karein.');
+ w.document.write(`<!DOCTYPE html><html><head><meta charset="utf-8"><title>${title}</title><meta name="viewport" content="width=device-width,initial-scale=1"><style>
+body{font-family:'Noto Serif',Georgia,'Times New Roman',serif;margin:0;color:#111;font-size:11pt;background:#fff}.pg{max-width:200mm;margin:0 auto;padding:8mm 6mm;page-break-after:always}.pg:last-child{page-break-after:auto}
+.hbox{border:3px solid #111;text-align:center;padding:12px 10px}.hn{font-size:22pt;font-weight:bold;letter-spacing:5px}.hs{font-size:10.5pt;margin:3px 0}.hbox hr{border:0;border-top:1px solid #777;margin:8px 16px}
+.gen{text-align:right;font-size:9pt;font-style:italic;color:#666;margin:10px 2px}.ttl{text-align:center;font-weight:bold;font-size:13pt;letter-spacing:2px;margin:8px 0}
+table{width:100%;border-collapse:collapse}.info{border:2px solid #333;margin-bottom:12px}.info td{border:2px solid #fff;background:#fff;padding:7px 9px;font-size:10.5pt;outline:1px solid #ccc}.info td.l{background:#e8e8e8;font-weight:bold;width:20%}
+.mt th{background:#222;color:#fff;padding:9px 6px;font-size:10pt;text-align:left;border:1px solid #444}.mt td{padding:8px 7px;border:1.5px solid #ccc;font-size:10pt}.mt tr:nth-child(even) td{background:#fafafa}.mt tr.p td{background:#e6e6e6;font-weight:bold}.c{text-align:center}.r{text-align:right}.mt th.c{text-align:center}.mt th.r{text-align:right}
+.sum{border:2px solid #111;padding:10px 16px;margin-top:14px}.st{font-weight:bold;letter-spacing:1px;border-bottom:2px solid #111;padding-bottom:5px;margin-bottom:4px}.sr{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px dotted #aaa;font-size:11pt}.tot{display:flex;justify-content:space-between;border-top:2px solid #111;margin-top:6px;padding-top:8px;font-size:13pt;font-weight:bold}
+.note{border:1px dashed #888;text-align:center;padding:7px;font-size:10pt;margin-top:10px}.fdev{text-align:center;font-size:7.5pt;color:#666;margin-top:8px;border-top:1px dotted #bbb;padding-top:5px}
+#pb{position:sticky;top:0;background:#0a1628;color:#c9a84c;padding:10px;text-align:center;font-family:Arial,sans-serif;font-size:14px}#pb button,#pb a{padding:8px 14px;margin:2px;font-weight:bold;border:0;border-radius:6px;cursor:pointer;text-decoration:none;font-size:13px;display:inline-block}
+@media print{#pb{display:none}@page{size:A4;margin:8mm}.mt tr.p td,.info td.l,.mt th{-webkit-print-color-adjust:exact;print-color-adjust:exact}}</style></head><body><div id="pb">📄 ${NAME} <button onclick="print()">🖨️ Print</button><button style="background:#c9a84c;color:#0a1628" onclick="print()">⬇️ Save as PDF</button>${extra||''}</div>${pages}</body></html>`);w.document.close()}
+const info=(s,extra)=>`<table class="info"><tr><td class="l">Student Name</td><td><b>${esc(s.name)}</b></td><td class="l">Class / Section</td><td>Class ${s.cls} — Section ${s.sec}</td></tr><tr><td class="l">Father's Name</td><td colspan="3">${esc(s.father)}</td></tr><tr><td class="l">Mobile</td><td>${esc(s.mobile)}</td><td class="l">Admission Date</td><td>${fdate(s.date)}</td></tr><tr><td class="l">Monthly Fee</td><td><b>${fm(s.fee)}</b></td><td class="l">Fee Type</td><td>Tuition</td></tr>${extra||''}</table>`;
+const sumBox=(t,rows,tl,tv)=>`<div class="sum"><div class="st">${t}</div>${rows.map(r=>`<div class="sr"><span>${r[0]}</span><b>${r[1]}</b></div>`).join('')}<div class="tot"><span>${tl}</span><span>${tv}</span></div></div>`;
+const TR=(n,a,cls)=>`<tr${cls?` class="${cls}"`:''}><td class="c">${n}</td>${a.map((x,i)=>`<td class="${i===1?'c':i>1?'r':''}">${x}</td>`).join('')}</tr>`;
+function ledgerHtml(s){const c=cur(),tot=ptotal(s);let pn=0,pa=0,pend=0;
+ const rows=[...Array(12)].map((_,i)=>{const m=addM(AYs()+'-04',i),q=mst(s,m,tot),n=i+1;
+  if(!q)return TR(n,[mf(m),'<i>NA</i>','—','—','—','—']);const d=mdate(s,m)||'—';
+  if(q.bal===0){pn++;pa+=q.paid;return TR(n,[mf(m),'√ PAID',fm(s.fee),'<b>'+fm(q.paid)+'</b>','√ Clear',d],'p')}
+  if(q.paid>0){pa+=q.paid;if(m<=c)pend+=q.bal;return TR(n,['<b>'+mf(m)+'</b>','<b>PARTIAL</b>',fm(s.fee),'<b>'+fm(q.paid)+'</b>',fm(q.bal),d],'p')}
+  if(m<=c){pend+=q.bal;return TR(n,['<b>'+mf(m)+'</b>','<b>PENDING</b>',fm(s.fee),'—',fm(q.bal),'—'])}
+  return TR(n,[mf(m),'—','—','—','—','—'])}).join('');
+ const x=stats(s),back=Math.max(0,x.due-pend);
+ const body=info(s)+`<table class="mt"><tr><th class="c">S.No</th><th>Month</th><th class="c">Status</th><th class="r">Amount</th><th class="r">Credit</th><th class="r">Balance</th><th class="r">Payment Date</th></tr>${rows}</table>`+
+ sumBox('FEE SUMMARY',[['Months Fully Paid (This Year):',pn+' month'+(pn==1?'':'s')],['Total Amount Paid (Credited):',fm(pa)],['Pending (This Year):',fm(pend)]].concat(back?[['Previous Years Dues:',fm(back)]]:[]).concat(x.adv?[['Advance Credit:',fm(x.adv)]]:[]),'TOTAL AMOUNT PAYABLE:',fm(x.due));
+ return page(body)}
+function ledger(id){const s=S.find(x=>x.id===id);printWin('Full Report - '+s.name,ledgerHtml(s),`<a style="background:#25d366;color:#fff" href="https://wa.me/${num(s.mobile)}" target="_blank">💬 WhatsApp</a>`)}
+function slip(id,rno){const s=S.find(x=>x.id===id);let p=rno?P.find(x=>x.rno===rno):[...P].reverse().find(x=>x.sid===id);
+ if(!p)return alert('Is student ki koi payment nahi mili.');const det=p.det||p.months.map(m=>({m,amt:s.fee,bal:0})),due=p.due!=null?p.due:stats(s).due;
+ const rows=det.map((d,i)=>TR(i+1,[mf(d.m),d.bal>0?'<b>PARTIAL</b>':'√ PAID',fm(s.fee),'<b>'+fm(d.amt)+'</b>',d.bal>0?fm(d.bal):'√ Clear'],'p')).join('');
+ const body=`<div class="ttl">FEE PAYMENT RECEIPT</div>`+info(s,`<tr><td class="l">Receipt No.</td><td><b>${pad(p.rno)}</b></td><td class="l">Payment Date</td><td>${p.date}</td></tr>`)+`<table class="mt"><tr><th class="c">S.No</th><th>Month</th><th class="c">Status</th><th class="r">Amount</th><th class="r">Credit</th><th class="r">Balance</th></tr>${rows}</table>`+sumBox('PAYMENT SUMMARY',[['Months Covered:',det.length+' month'+(det.length==1?'':'s')],['Balance Due (after this payment):',fm(due)]],'TOTAL AMOUNT PAID:',fm(p.amt));
+ printWin('Payment Receipt',page(body,'🙏 धन्यवाद &nbsp;|&nbsp; Thank you for your payment'),`<a style="background:#25d366;color:#fff" href="${waReceipt(s,p)}" target="_blank">💬 WhatsApp Receipt</a>`)}
+function demandHtml(s){const x=stats(s);const rows=x.months.map((m,i)=>{const q=mst(s,m,x.tot);return TR(i+1,['<b>'+mf(m)+'</b>','<b>'+(q.paid>0?'PARTIAL':'PENDING')+'</b>',fm(s.fee),q.paid>0?fm(q.paid):'—',fm(q.bal)])}).join('');
+ return page(`<div class="ttl">FEE DEMAND BILL</div>`+info(s)+`<table class="mt"><tr><th class="c">S.No</th><th>Month</th><th class="c">Status</th><th class="r">Amount</th><th class="r">Credit</th><th class="r">Balance</th></tr>${rows}</table>`+sumBox('DEMAND SUMMARY',[['Pending Months:',x.months.length+' month'+(x.months.length==1?'':'s')],['Monthly Fee:',fm(s.fee)]],'TOTAL AMOUNT PAYABLE:',fm(x.due)))}
+function demand(id){const s=S.find(x=>x.id===id);if(!stats(s).due)return alert('Is student ka koi bakaya nahi hai.');printWin('Demand Bill - '+s.name,demandHtml(s),`<button style="background:#25d366;color:#fff" onclick="opener.remind('${s.id}','wa')">💬 WhatsApp</button>`)}
+function allDemand(){const L=S.filter(s=>stats(s).due);if(!L.length)return alert('Koi pending student nahi hai.');printWin('Demand Bills',L.map(demandHtml).join(''))}
+const repTable=(h,rows,al)=>`<table class="mt"><tr>${h.map((x,i)=>`<th class="${al&&al.includes(i)?'r':''}">${x}</th>`).join('')}</tr>${rows}</table>`;
+function monthReport(){const m=$('rm').value||cur(),c=$('rc').value;let L=S.filter(s=>ym(s.date)<=m&&(!c||s.cls===c)),tp=0,td=0,pc=0;
+ const rows=L.map((s,i)=>{const q=mst(s,m),d=mdate(s,m);tp+=q.paid;td+=q.bal;if(!q.bal)pc++;return`<tr${!q.bal?' class="p"':''}><td>${i+1}</td><td>${esc(s.name)}</td><td>${esc(s.father)}</td><td>${s.cls}-${s.sec}</td><td>${esc(s.mobile)}</td><td>${!q.bal?'√ PAID':q.paid>0?'PARTIAL':'PENDING'}</td><td class="r">${q.paid?fm(q.paid):'—'}</td><td class="r">${q.bal?fm(q.bal):'—'}</td><td>${d||'—'}</td></tr>`}).join('');
+ printWin('Month Report',page(`<div class="ttl">FEE COLLECTION REPORT — ${mf(m).toUpperCase()}${c?' | CLASS '+c:''}</div>`+repTable(['S.No','Student','Father','Class','Mobile','Status','Paid','Dues','Date'],rows,[6,7])+sumBox('MONTH SUMMARY',[['Total Students:',L.length],['Fully Paid / Pending:',pc+' / '+(L.length-pc)],['Total Collected:',fm(tp)]],'TOTAL DUES:',fm(td))))}
+function pendingReport(){let t=0;const rows=S.map(s=>({s,x:stats(s)})).filter(o=>o.x.due).map((o,i)=>{t+=o.x.due;return`<tr><td>${i+1}</td><td>${esc(o.s.name)}</td><td>${esc(o.s.father)}</td><td>${o.s.cls}-${o.s.sec}</td><td>${esc(o.s.mobile)}</td><td>${o.x.months.length}</td><td class="r">${fm(o.x.due)}</td></tr>`}).join('');
+ printWin('Pending',page(`<div class="ttl">FULL PENDING FEE REPORT</div>`+repTable(['S.No','Student','Father','Class','Mobile','Months','Pending'],rows,[6])+sumBox('PENDING SUMMARY',[['Students with Dues:',rows?rows.split('<tr>').length-1:0]],'TOTAL PENDING:',fm(t))))}
+function todayReport(){const L=P.filter(p=>p.date===today());let t=0;const rows=L.map((p,i)=>{const s=S.find(x=>x.id===p.sid)||{};t+=p.amt;return`<tr><td>${i+1}</td><td>${pad(p.rno)}</td><td>${esc(s.name)}</td><td>${s.cls||''}-${s.sec||''}</td><td>${p.months.map(mname).join(', ')}</td><td class="r">${fm(p.amt)}</td><td class="r">${p.due!=null?fm(p.due):'—'}</td></tr>`}).join('');
+ printWin('Today',page(`<div class="ttl">TODAY'S COLLECTION — ${fdate(today())}</div>`+repTable(['S.No','Receipt','Student','Class','Months','Paid','Balance'],rows,[5,6])+sumBox('COLLECTION SUMMARY',[['Total Receipts:',L.length]],'TOTAL COLLECTED:',fm(t)),'🙏 धन्यवाद &nbsp;|&nbsp; Thank you'))}
+// ---------- fees / misc ----------
+function del(id){if(!needDel())return;const s=S.find(x=>x.id===id);if(!s||!confirm('Is student ko Trash me bhejein? Uski payments bhi saath jayengi.'))return;toTrash({type:'student',label:s.name+' (Class '+s.cls+'-'+s.sec+')',student:s,pays:P.filter(p=>p.sid===id)});S=S.filter(x=>x.id!==id);P=P.filter(p=>p.sid!==id);sv('af_students',S);sv('af_pays',P);renderAll()}
+function saveFees(){CL.forEach(c=>F[c]=Number($('f-'+c).value)||0);sv('af_fees',F);autoFee();alert('✅ Fee structure save ho gaya (naye students ke liye).')}
+function saveLogin(){fauth.sendPasswordResetEmail(CUR.email).then(()=>alert('✅ Password reset link '+CUR.email+' par bhej diya gaya.')).catch(e=>alert('Error: '+e.message))}
+function backup(){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify({S,P,F,ST,TRS})],{type:'application/json'}));a.download='aafiya-backup-'+today()+'.json';a.click()}
+function restore(e){const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{const d=JSON.parse(r.result);if(!confirm('Current data replace hoga. Continue?'))return;S=d.S||[];P=d.P||[];F=d.F||F;ST=d.ST||ST;TRS=d.TRS||TRS;sv('af_staff',ST);sv('af_trash',TRS);sv('af_students',S);sv('af_pays',P);sv('af_fees',F);location.reload()}catch(x){alert('Invalid file')}};r.readAsText(f)}
+function init(){drawNav();
+ const opt=CL.map(c=>`<option value="${c}">${c==='JKG'||c==='SKG'?c:'Class '+c}</option>`).join('');$('ac').innerHTML=opt;$('rc').innerHTML='<option value="">All Classes</option>'+CL.map(c=>`<option>${c}</option>`).join('');
+ $('feeGrid').innerHTML=CL.map(c=>`<div><label>${c}</label><input type="number" id="f-${c}" value="${F[c]||0}"></div>`).join('');
+ $('nu').value=CUR.email||'';$('ad').value=today();$('rm').value=cur();$('cm').value=cur();$('cc').innerHTML='<option value="">All Classes</option>'+CL.map(c=>`<option value="${c}">${c==='JKG'||c==='SKG'?c:'Class '+c}</option>`).join('');autoFee();go('home')}
+checkLic();fauth.setPersistence(firebase.auth.Auth.Persistence.SESSION).then(()=>fauth.onAuthStateChanged(u=>{if(u&&!CUR)afterAuth(u)}));
+</script></body></html>
